@@ -78,8 +78,8 @@ class Category {
 }
 
 final List<Category> categories = [
-  Category(title: "Graphic Design", image: "https://source.unsplash.com/200x200/?design"),
-  Category(title: "Videography", image: "https://source.unsplash.com/200x200/?video"),
-  Category(title: "Programming", image: "https://source.unsplash.com/200x200/?coding"),
+  Category(title: "Graphic Design", image: "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+  Category(title: "Videography", image: "https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+  Category(title: "Programming", image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
 ];
 
