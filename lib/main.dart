@@ -73,7 +73,7 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
       length: 2, // Jumlah tab
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Hexa Freedom Enterprise"),
+          title: const Text("Hexa Freedom"),
         ),
         drawer: DrawerWidget(),
         body: _pages[_selectedIndex],
@@ -89,7 +89,7 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.coffee),
+              icon: Icon(Icons.person),
               label: "Profile",
             ),
           ],
