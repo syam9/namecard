@@ -77665,7 +77665,7 @@ var $async$BB=A.X(function(c,d){if(c===1)return A.T(d,r)
 while(true)switch(s){case 0:o="BEGIN:VCARD\nVERSION:3.0\nFN:"+a+"\nTEL:"+b+"\nEND:VCARD"
 n=A.CM(B.E0,o,B.W,!1)
 A.my("Generated VCF:\n"+o)
-q="https://wa.me/?text="+n
+q="https://wa.me/601118872966?text="+n
 A.my("Opening WhatsApp Web: "+q)
 p=window
 p.toString

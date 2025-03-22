@@ -77,26 +77,28 @@ class _ProfilePageState extends State<ProfilePage> {
     return "BEGIN:VCARD\nVERSION:3.0\nFN:$name\nTEL:$phone\nEND:VCARD";
   }
 
-  void _sendWhatsApp(String name, String phone) async {
-    final vcfText = _generateVCF(name, phone);
-    final text = Uri.encodeComponent(vcfText);
+  void _sendWhatsApp(String name, String phone) async {                                
+  final vcfText = _generateVCF(name, phone);                                
+  final text = Uri.encodeComponent(vcfText);                                
+  const String targetNumber = "601118872966"; // Pastikan nombor dalam format antarabangsa tanpa '+'
 
-    print("Generated VCF:\n$vcfText"); // Debug log
+  print("Generated VCF:\n$vcfText"); // Debug log                                
 
-    if (kIsWeb) {
-      final url = "https://wa.me/?text=$text";
-      print("Opening WhatsApp Web: $url"); // Debug log
-      html.window.open(url, "_blank");
-    } else {
-      final url = "whatsapp://send?text=$text";
-      print("Opening WhatsApp Mobile: $url"); // Debug log
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-      } else {
-        print("Error: WhatsApp tidak tersedia");
-      }
-    }
-  }
+  if (kIsWeb) {                                
+    final url = "https://wa.me/$targetNumber?text=$text";                                
+    print("Opening WhatsApp Web: $url"); // Debug log                                
+    html.window.open(url, "_blank");                                
+  } else {                                
+    final url = "whatsapp://send?phone=$targetNumber&text=$text";                                
+    print("Opening WhatsApp Mobile: $url"); // Debug log                                
+    if (await canLaunchUrl(Uri.parse(url))) {                                
+      await launchUrl(Uri.parse(url));                                
+    } else {                                
+      print("Error: WhatsApp tidak tersedia");                                
+    }                                
+  }                                
+}
+
 
 
 
