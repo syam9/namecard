@@ -77,7 +77,7 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
         //   title: const Text("Hexa Freedom"),
         // ),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100), // Tinggi AppBar
+          preferredSize: Size.fromHeight(80), // Tinggi AppBar
           child: Stack(
             fit: StackFit.expand,
             children: [

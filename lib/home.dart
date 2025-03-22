@@ -30,8 +30,11 @@ class _ReelsPreviewPageState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
+    // double screenWidth = MediaQuery.of(context).size.width;
+    // double reelSize = screenWidth * 0.20; // Responsive circle size
     double screenWidth = MediaQuery.of(context).size.width;
-    double reelSize = screenWidth * 0.20; // Responsive circle size
+    bool isMobile = screenWidth < 600;
+    double reelSize = isMobile ? 80 : 120; // Adjust reel size based on platform
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -52,55 +55,101 @@ class _ReelsPreviewPageState extends State<HomeTab> {
 
             SizedBox(height: 30),
             // ListView Reels (Bulat & Scrollable)
-            SizedBox(
-              height: reelSize + 30, // Adaptive height
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: reels.length,
-                itemBuilder: (context, index) {
-                  final isOpened = openedReels.contains(index);
-
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        openedReels.add(index);
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(3), // Border spacing
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: isOpened
-                                  ? null
-                                  : LinearGradient(
-                                      colors: [Colors.blue, Colors.green],
-                                    ),
-                            ),
-                            child: ClipOval(
-                              child: Image.network(
-                                reels[index],
-                                width: reelSize,
-                                height: reelSize,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            "Event ${index + 1}",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                SizedBox(
+          height: reelSize + 30,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: reels.length,
+            itemBuilder: (context, index) {
+              final isOpened = openedReels.contains(index);
+              return GestureDetector(
+                onTap: () {
+                  openedReels.add(index);
                 },
-              ),
-            ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: isOpened
+                              ? null
+                              : LinearGradient(
+                                  colors: [Colors.blue, Colors.green],
+                                ),
+                        ),
+                        child: ClipOval(
+                          child: Image.network(
+                            reels[index],
+                            width: reelSize,
+                            height: reelSize,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        "Event ${index + 1}",
+                        style: TextStyle(fontSize: isMobile ? 12 : 14),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+            // SizedBox(
+            //   height: reelSize + 30, // Adaptive height
+            //   child: ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: reels.length,
+            //     itemBuilder: (context, index) {
+            //       final isOpened = openedReels.contains(index);
+            //
+            //       return GestureDetector(
+            //         onTap: () {
+            //           setState(() {
+            //             openedReels.add(index);
+            //           });
+            //         },
+            //         child: Padding(
+            //           padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            //           child: Column(
+            //             children: [
+            //               Container(
+            //                 padding: EdgeInsets.all(3), // Border spacing
+            //                 decoration: BoxDecoration(
+            //                   shape: BoxShape.circle,
+            //                   gradient: isOpened
+            //                       ? null
+            //                       : LinearGradient(
+            //                           colors: [Colors.blue, Colors.green],
+            //                         ),
+            //                 ),
+            //                 child: ClipOval(
+            //                   child: Image.network(
+            //                     reels[index],
+            //                     width: reelSize,
+            //                     height: reelSize,
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                 ),
+            //               ),
+            //               const SizedBox(height: 5),
+            //               Text(
+            //                 "Event ${index + 1}",
+            //                 style: TextStyle(fontSize: 12),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
 
             SizedBox(height: 20),
 

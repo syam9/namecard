@@ -199,7 +199,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    height: MediaQuery.of(context).size.height / 22,
                     child: ElevatedButton(
                       onPressed: () {
                         // Action untuk Pay
@@ -220,7 +219,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    height: MediaQuery.of(context).size.height / 22,
                     child: OutlinedButton(
                       onPressed: () {
                         // Action untuk QRCode Payment
@@ -267,7 +265,6 @@ class _ProfilePageState extends State<ProfilePage> {
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 21,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -283,7 +280,6 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(height: 10),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 21,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
