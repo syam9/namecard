@@ -28,7 +28,7 @@ class DrawerWidget extends StatelessWidget {
 
           ListTile(
             title: Text(
-              "Services",
+              "Past Projects",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

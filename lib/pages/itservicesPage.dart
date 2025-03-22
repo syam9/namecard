@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class ITServicesPage extends StatelessWidget {
   final List<Map<String, String>> services = [
     {"title": "UIUX Designer", "icon": "💻"},
-    {"title": "Graphic Design", "icon": "🔒"},
+    {"title": "Graphic Design", "icon": "🎨"},
     {"title": "App Development", "icon": "📱"},
-    {"title": "Videography", "icon": "📱"},
-    {"title": "Programming", "icon": "🤖"},
+    {"title": "Videography", "icon": " 🎥r"},
+    {"title": "Programming", "icon": "👨‍💻"},
   ];
 
   void _applyNow(BuildContext context) {
@@ -39,7 +39,7 @@ class ITServicesPage extends StatelessWidget {
                   return Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    elevation: 4,
+                    elevation: 0,
                     child: InkWell(
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -75,6 +75,9 @@ class ITServicesPage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () => _applyNow(context),
                 style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                   textStyle: TextStyle(fontSize: 18),
                 ),
