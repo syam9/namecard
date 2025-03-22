@@ -178,8 +178,11 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             CircleAvatar(
               radius: 50,
-              backgroundImage:
-                  AssetImage("images/hf.png"), // Ganti dengan image dari assets
+              // backgroundImage:
+              //     AssetImage("images/hf.png"), // Ganti dengan image dari assets
+              backgroundImage: NetworkImage(
+                "https://ia601309.us.archive.org/18/items/123_20250322/123.png",
+              ),
             ),
             SizedBox(height: 10),
             Text(
@@ -195,37 +198,43 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Expanded(
                   flex: 2,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Action untuk Pay
-                      launchUrl(Uri.parse(
-                          "https://buymeacoffee.com/syam96")); // Pastikan category ada 'url'
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 22,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Action untuk Pay
+                        launchUrl(Uri.parse(
+                            "https://buymeacoffee.com/syam96")); // Pastikan category ada 'url'
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: const Text("Pay"),
                     ),
-                    child: const Text("Pay"),
                   ),
                 ),
                 const SizedBox(width: 10), // Jarak antara dua butang
                 Expanded(
                   flex: 1,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // Action untuk QRCode Payment
-                      launchUrl(Uri.parse(
-                          "https://buymeacoffee.com/syam96")); // Pastikan category ada 'url'
-                    },
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 22,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Action untuk QRCode Payment
+                        launchUrl(Uri.parse(
+                            "https://buymeacoffee.com/syam96")); // Pastikan category ada 'url'
+                      },
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: const Text("Donate"),
                     ),
-                    child: const Text("Donate"),
                   ),
                 ),
               ],
@@ -258,6 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 21,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -273,6 +283,7 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(height: 10),
             Container(
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 21,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
