@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
     <application
         android:label="namecard"
         android:name="${applicationName}"
@@ -29,5 +30,13 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <queries>
+            <intent>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="https" />
+            </intent>
+        </queries>
+
     </application>
 </manifest>

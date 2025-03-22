@@ -3,7 +3,23 @@ import 'drawer.dart';
 import 'home.dart';
 import 'profile.dart';
 
+Map<int, Color> colorCodes = {
+  50: Color(0xFFE0F7FA),
+  100: Color(0xFFB2EBF2),
+  200: Color(0xFF80DEEA),
+  300: Color(0xFF4DD0E1),
+  400: Color(0xFF26C6DA),
+  500: Color(0xFF00ABB7), // Warna utama
+  600: Color(0xFF0097A7),
+  700: Color(0xFF00838F),
+  800: Color(0xFF006064),
+  900: Color(0xFF004D40),
+};
+
+MaterialColor customSwatch = MaterialColor(0xFF00ABB7, colorCodes);
+
 void main() {
+    WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -14,6 +30,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: customSwatch,
+        scaffoldBackgroundColor: Colors.grey[200], // Background app
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF00abb7), // Warna AppBar
+          foregroundColor: Colors.white, // Warna teks dalam AppBar
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: Color(0xFF00abb7), // Warna ikon terpilih
+          unselectedItemColor: Colors.grey, // Warna ikon tak dipilih
+        ),
+      ),
       home: DashboardScreen(),
     );
   }
@@ -52,7 +80,7 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          selectedItemColor: Colors.blue, // Warna ikon yang aktif
+          selectedItemColor: Color(0xFF00abb7), // Warna ikon yang aktif
           unselectedItemColor: Colors.grey, // Warna ikon yang tak aktif
           showUnselectedLabels: true,
           items: [
