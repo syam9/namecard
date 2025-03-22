@@ -206,14 +206,14 @@ class _ProfilePageState extends State<ProfilePage> {
       String org, String title, String website, String note) {
     String vCard = "BEGIN:VCARD\\nVERSION:3.0";
 
-    if (name.isNotEmpty) vCard += "\\nFN:$name";
-    if (phone.isNotEmpty) vCard += "\\nTEL:$phone";
-    if (email.isNotEmpty) vCard += "\\nEMAIL:$email";
-    if (org.isNotEmpty) vCard += "\\nORG:$org";
-    if (title.isNotEmpty) vCard += "\\nTITLE:$title";
-    if (address.isNotEmpty) vCard += "\\nADR:$address";
-    if (website.isNotEmpty) vCard += "\\nURL:$website";
-    if (note.isNotEmpty) vCard += "\\nNOTE:$note";
+      if (name.isNotEmpty) vCard += "\nFN:$name";                                                                                  
+      if (phone.isNotEmpty) vCard += "\nTEL:$phone";
+      if (email.isNotEmpty) vCard += "\nEMAIL:$email";
+      if (org.isNotEmpty) vCard += "\nORG:$org";                                
+      if (title.isNotEmpty) vCard += "\nTITLE:$title";     
+      if (address.isNotEmpty) vCard += "\nADR:$address";
+      if (website.isNotEmpty) vCard += "\nURL:$website";
+      if (note.isNotEmpty) vCard += "\nNOTE:$note";
 
     vCard += "\\nEND:VCARD";
     return vCard;

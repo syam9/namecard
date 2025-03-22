@@ -78141,14 +78141,14 @@ pv(a,b){return this.ut(a,b,B.KU)},
 BK(a,b,c,d,e,f,g,h){return this.a7_(a,b,c,d,e,f,g,h)},
 a7_(a,b,c,d,e,f,g,h){var s=0,r=A.W(t.z),q,p,o,n
 var $async$BK=A.X(function(i,j){if(i===1)return A.T(j,r)
-while(true)switch(s){case 0:n=a.length!==0?"BEGIN:VCARD\\nVERSION:3.0"+("\\nFN:"+a):"BEGIN:VCARD\\nVERSION:3.0"
-if(b.length!==0)n+="\\nTEL:"+b
-if(c.length!==0)n+="\\nEMAIL:"+c
-if(e.length!==0)n+="\\nORG:"+e
-if(f.length!==0)n+="\\nTITLE:"+f
-if(d.length!==0)n+="\\nADR:"+d
-if(g.length!==0)n+="\\nURL:"+g
-n=(h.length!==0?n+("\\nNOTE:"+h):n)+"\\nEND:VCARD"
+while(true)switch(s){case 0:n=a.length!==0?"BEGIN:VCARD\\nVERSION:3.0"+("\nFN:"+a):"BEGIN:VCARD\\nVERSION:3.0"
+if(b.length!==0)n+="\nTEL:"+b
+if(c.length!==0)n+="\nEMAIL:"+c
+if(e.length!==0)n+="\nORG:"+e
+if(f.length!==0)n+="\nTITLE:"+f
+if(d.length!==0)n+="\nADR:"+d
+if(g.length!==0)n+="\nURL:"+g
+n=(h.length!==0?n+("\nNOTE:"+h):n)+"\\nEND:VCARD"
 q=A.CQ(B.E6,n,B.W,!1)
 A.mA("Generated VCF:\n"+n)
 p="https://wa.me/601118872966?text="+q
