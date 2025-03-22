@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'pages/mescoffeePage.dart';
+import 'pages/itservicesPage.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -16,15 +18,6 @@ class _ReelsPreviewPageState extends State<HomeTab> {
     "https://ia601309.us.archive.org/18/items/123_20250322/123.png",
     "https://ia601309.us.archive.org/18/items/123_20250322/123.png",
   ];
-
-  // final List<String> reels = [
-  //   "https://source.unsplash.com/random/100x100?people",
-  //   "https://source.unsplash.com/random/100x100?city",
-  //   "https://source.unsplash.com/random/100x100?nature",
-  //   "https://source.unsplash.com/random/100x100?ocean",
-  //   "https://source.unsplash.com/random/100x100?forest",
-  //   "https://source.unsplash.com/random/100x100?mountain",
-  // ];
 
   final Set<int> openedReels = {}; // Simpan reels yang dah dibuka
 
@@ -55,52 +48,54 @@ class _ReelsPreviewPageState extends State<HomeTab> {
 
             SizedBox(height: 30),
             // ListView Reels (Bulat & Scrollable)
-                SizedBox(
-          height: reelSize + 30,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: reels.length,
-            itemBuilder: (context, index) {
-              final isOpened = openedReels.contains(index);
-              return GestureDetector(
-                onTap: () {
-                  openedReels.add(index);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: isOpened
-                              ? null
-                              : LinearGradient(
-                                  colors: [Colors.blue, Colors.green],
-                                ),
-                        ),
-                        child: ClipOval(
-                          child: Image.network(
-                            reels[index],
-                            width: reelSize,
-                            height: reelSize,
-                            fit: BoxFit.cover,
+            SizedBox(
+              height: reelSize + 30,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: reels.length,
+                itemBuilder: (context, index) {
+                  final isOpened = openedReels.contains(index);
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        openedReels.add(index);
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: isOpened
+                                  ? null
+                                  : LinearGradient(
+                                      colors: [Colors.blue, Colors.green],
+                                    ),
+                            ),
+                            child: ClipOval(
+                              child: Image.network(
+                                reels[index],
+                                width: reelSize,
+                                height: reelSize,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Event ${index + 1}",
+                            style: TextStyle(fontSize: isMobile ? 12 : 14),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        "Event ${index + 1}",
-                        style: TextStyle(fontSize: isMobile ? 12 : 14),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
+                    ),
+                  );
+                },
+              ),
+            ),
             // SizedBox(
             //   height: reelSize + 30, // Adaptive height
             //   child: ListView.builder(
@@ -179,7 +174,12 @@ class _ReelsPreviewPageState extends State<HomeTab> {
                   final category = categories[index];
                   return InkWell(
                     onTap: () {
-                      launchUrl(Uri.parse(category.url)); // Pastikan category ada 'url'
+                      // launchUrl(Uri.parse(
+                      //     category.url)); // Pastikan category ada 'url'
+                      Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => category.url()),
+);
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
@@ -219,14 +219,13 @@ class _ReelsPreviewPageState extends State<HomeTab> {
         ),
       ),
     );
-
   }
 }
 
 class Category {
   final String title;
   final String image;
-  final String url;
+  final Widget Function() url;
 
   Category({required this.title, required this.image, required this.url});
 }
@@ -234,14 +233,14 @@ class Category {
 final List<Category> categories = [
   Category(
       title: "IT Services",
-      image: "https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      url: "https://hexa-freedom.netlify.app"
-
-      ),
+      image:
+          "https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      url: () => ITServicesPage(),
+  ),
   Category(
       title: "MESCOFFEE",
-      image: "https://images.pexels.com/photos/1924951/pexels-photo-1924951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      url: "https://mescoffee.my"
-
-      ),
+      image:
+          "https://images.pexels.com/photos/1924951/pexels-photo-1924951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      url: () => MescoffeePage(),
+  )
 ];
