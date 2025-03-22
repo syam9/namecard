@@ -78065,7 +78065,7 @@ A.Bj.prototype={
 rV(a){return this.afg(a)},
 afg(a){var s=0,r=A.U(t.z),q
 var $async$rV=A.V(function(b,c){if(b===1)return A.R(c,r)
-while(true)switch(s){case 0:q="whatsapp://send?phone="+a
+while(true)switch(s){case 0:q="https://wa.me/"+a
 s=5
 return A.Y(A.tL(A.dZ(q,0,null)),$async$rV)
 case 5:s=c?2:4

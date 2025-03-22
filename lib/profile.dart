@@ -31,7 +31,8 @@ class _ProfilePageState extends State<ProfilePage> {
   // }
 
   void openWhatsApp(String phone) async {
-    String url = "whatsapp://send?phone=$phone"; // Link rasmi API WhatsApp
+    // String url = "whatsapp://send?phone=$phone"; // Link rasmi API WhatsApp
+    String url = "https://wa.me/$phone";
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     } else {
