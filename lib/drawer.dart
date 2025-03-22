@@ -37,7 +37,7 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.graphic_eq),
+            leading: Icon(Icons.dashboard),
             title: Text("UIUX Designer"),
             onTap: () async {
               // Navigator.pop(context);
@@ -65,7 +65,7 @@ class DrawerWidget extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.video_stable),
+            leading: Icon(Icons.movie_filter),
             title: Text("Videpgraphy"),
             onTap: () async {
               // Navigator.pop(context);

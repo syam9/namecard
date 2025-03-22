@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class HomeTab extends StatefulWidget {
 
 class _ReelsPreviewPageState extends State<HomeTab> {
 // class HomeTab extends StatelessWidget {
-      final List<String> reels = [
+  final List<String> reels = [
     "https://images.pexels.com/photos/716276/pexels-photo-716276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/8761323/pexels-photo-8761323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/8761513/pexels-photo-8761513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -28,14 +28,12 @@ class _ReelsPreviewPageState extends State<HomeTab> {
 
   final Set<int> openedReels = {}; // Simpan reels yang dah dibuka
 
-
   @override
   Widget build(BuildContext context) {
-          double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
     double reelSize = screenWidth * 0.20; // Responsive circle size
     return Scaffold(
-      body:
-     Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,33 +128,39 @@ class _ReelsPreviewPageState extends State<HomeTab> {
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   final category = categories[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-                            child: Image.network(
-                              category.image,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
+                  return InkWell(
+                    onTap: () {
+                      launchUrl(Uri.parse(category.url)); // Pastikan category ada 'url'
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(10)),
+                              child: Image.network(
+                                category.image,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            category.title,
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              category.title,
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -165,71 +169,30 @@ class _ReelsPreviewPageState extends State<HomeTab> {
           ],
         ),
       ),
-      );
+    );
 
-      
-      // return Padding(
-      //   padding: const EdgeInsets.all(8.0),
-      //   child: GridView.builder(
-      //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //       crossAxisCount: 2, // Auto adjust ikut skrin
-      //       crossAxisSpacing: 10,
-      //       mainAxisSpacing: 10,
-      //       childAspectRatio: 1.2,
-      //     ),
-      //     itemCount: categories.length,
-      //     itemBuilder: (context, index) {
-      //       final category = categories[index];
-      //       return Card(
-      //         shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(10),
-      //         ),
-      //         elevation: 4,
-      //         child: Column(
-      //           crossAxisAlignment: CrossAxisAlignment.center,
-      //           children: [
-      //             Expanded(
-      //               child: ClipRRect(
-      //                 borderRadius:
-      //                     const BorderRadius.vertical(top: Radius.circular(10)),
-      //                 child: Image.network(
-      //                   category.image,
-      //                   width: double.infinity,
-      //                   fit: BoxFit.cover,
-      //                 ),
-      //               ),
-      //             ),
-      //             Padding(
-      //               padding: const EdgeInsets.all(8.0),
-      //               child: Text(
-      //                 category.title,
-      //                 style: const TextStyle(
-      //                     fontSize: 16, fontWeight: FontWeight.bold),
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       );
-      //     },
-      //   ),
-      // );
   }
 }
 
 class Category {
   final String title;
   final String image;
+  final String url;
 
-  Category({required this.title, required this.image});
+  Category({required this.title, required this.image, required this.url});
 }
 
 final List<Category> categories = [
   Category(
       title: "IT Services",
-      image:
-          "https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+      image: "https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      url: "https://hexa-freedom.netlify.app"
+
+      ),
   Category(
       title: "MESCOFFEE",
-      image:
-          "https://images.pexels.com/photos/1924951/pexels-photo-1924951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+      image: "https://images.pexels.com/photos/1924951/pexels-photo-1924951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      url: "https://mescoffee.my"
+
+      ),
 ];

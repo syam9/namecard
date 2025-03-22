@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'drawer.dart';
 import 'home.dart';
 import 'profile.dart';
+import 'dart:ui';
 
 Map<int, Color> colorCodes = {
   50: Color(0xFFE0F7FA),
@@ -19,7 +20,7 @@ Map<int, Color> colorCodes = {
 MaterialColor customSwatch = MaterialColor(0xFF00ABB7, colorCodes);
 
 void main() {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -72,9 +73,101 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
     return DefaultTabController(
       length: 2, // Jumlah tab
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Hexa Freedom"),
+        // appBar: AppBar(
+        //   title: const Text("Hexa Freedom"),
+        // ),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(100), // Tinggi AppBar
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Gambar background
+              Positioned.fill(
+                child: Image.network(
+                  'https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                  fit: BoxFit.cover, // Pastikan gambar penuh
+                ),
+              ),
+
+              // Overlay untuk blur & gelap (di Web kadang-kadang BackdropFilter tak jalan)
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5), // Lapisan gelap
+                  ),
+                  child: ClipRect(
+                    child: BackdropFilter(
+                      filter:
+                          ImageFilter.blur(sigmaX: 2, sigmaY: 2), // Blur effect
+                      child: Container(
+                        color: Colors.black
+                            .withOpacity(0.2), // Extra gelap supaya lebih jelas
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // AppBar Transparent supaya teks tak kacau gambar
+              AppBar(
+                backgroundColor: Colors.transparent, // Buat AppBar lutsinar
+                elevation: 0, // Hilangkan shadow
+                title: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      "Empowering You with Smart Solutions!",
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7), // Warna putih
+                        fontSize: 15, // Saiz font kecil
+                        fontStyle: FontStyle.italic, // Italic
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Design > Code > Coffee :)",
+                      style: TextStyle(
+                        color: Colors.white, // Warna putih
+                        fontSize: 15, // Saiz font kecil
+                        fontWeight: FontWeight.bold, // Italic
+                      ),
+                    ),
+                  ],
+                ),
+                centerTitle: true,
+              ),
+            ],
+          ),
         ),
+//           appBar: PreferredSize(
+//   preferredSize: Size.fromHeight(100), // Tinggikan AppBar
+//   child: Stack(
+//     fit: StackFit.expand,
+//     children: [
+//       Positioned.fill(
+//         child: Image.network(
+//           'https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+//           fit: BoxFit.cover, // Pastikan gambar penuh dalam ruang
+//         ),
+//       ),
+//       AppBar(
+//         backgroundColor: Colors.transparent, // Biar gambar jadi background
+//         elevation: 0, // Hilangkan shadow
+//         title: Text(
+//           "Your App Title",
+//           style: TextStyle(
+//             color: Colors.white, // Teks putih supaya jelas atas gambar
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//         centerTitle: true,
+//       ),
+//     ],
+//   ),
+// ),
+
         drawer: DrawerWidget(),
         body: _pages[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -85,11 +178,11 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
+              icon: Icon(Icons.home_max),
+              label: "Dashboard",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.people_outlined),
               label: "Profile",
             ),
           ],
