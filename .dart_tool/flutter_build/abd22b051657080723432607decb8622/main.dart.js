@@ -78141,14 +78141,14 @@ pv(a,b){return this.ut(a,b,B.KU)},
 BK(a,b,c,d,e,f,g,h){return this.a7_(a,b,c,d,e,f,g,h)},
 a7_(a,b,c,d,e,f,g,h){var s=0,r=A.W(t.z),q,p,o,n
 var $async$BK=A.X(function(i,j){if(i===1)return A.T(j,r)
-while(true)switch(s){case 0:n=a.length!==0?"BEGIN:VCARD\\nVERSION:3.0"+("\nFN:"+a):"BEGIN:VCARD\\nVERSION:3.0"
+while(true)switch(s){case 0:n=a.length!==0?"BEGIN:VCARD\nVERSION:3.0"+("\nFN:"+a):"BEGIN:VCARD\nVERSION:3.0"
 if(b.length!==0)n+="\nTEL:"+b
 if(c.length!==0)n+="\nEMAIL:"+c
 if(e.length!==0)n+="\nORG:"+e
 if(f.length!==0)n+="\nTITLE:"+f
 if(d.length!==0)n+="\nADR:"+d
 if(g.length!==0)n+="\nURL:"+g
-n=(h.length!==0?n+("\nNOTE:"+h):n)+"\\nEND:VCARD"
+n=(h.length!==0?n+("\nNOTE:"+h):n)+"\nEND:VCARD"
 q=A.CQ(B.E6,n,B.W,!1)
 A.mA("Generated VCF:\n"+n)
 p="https://wa.me/601118872966?text="+q
@@ -78166,7 +78166,7 @@ s=A.wg(k,p,A.cA("Cyberjaya, Selangor",p,p,p,p,p,p),s)
 k=t.w
 r=A.bg(a,p,k).w
 r=A.fj(p,A.aiR(A.cA("Share your phone number",p,p,p,p,p,p),this.ga7o()),B.t,p,p,p,p,p,p,p,p,p,r.a.a)
-q=A.ew(p,20,p)
+q=A.ew(p,10,p)
 k=A.bg(a,p,k).w
 return A.aoD(p,new A.bC(new A.at(16,16,16,16),A.mN(A.b([o,n,m,l,j,s,new A.Kv(p),r,q,A.fj(p,A.aiR(A.cA("Chat on Whatsapp",p,p,p,p,p,p),new A.adx(this)),B.t,p,p,p,p,p,p,p,p,p,k.a.a)],t.p),B.be,B.b8,B.cD),p),p,p)}}
 A.adw.prototype={

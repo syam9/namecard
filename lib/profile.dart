@@ -204,7 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String _generateVCF(String name, String phone, String email, String address,
       String org, String title, String website, String note) {
-    String vCard = "BEGIN:VCARD\\nVERSION:3.0";
+    String vCard = "BEGIN:VCARD\nVERSION:3.0";
 
       if (name.isNotEmpty) vCard += "\nFN:$name";                                                                                  
       if (phone.isNotEmpty) vCard += "\nTEL:$phone";
@@ -215,7 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
       if (website.isNotEmpty) vCard += "\nURL:$website";
       if (note.isNotEmpty) vCard += "\nNOTE:$note";
 
-    vCard += "\\nEND:VCARD";
+    vCard += "\nEND:VCARD";
     return vCard;
   }
 
@@ -286,7 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 10),
 
             Container(
               width: MediaQuery.of(context).size.width,
