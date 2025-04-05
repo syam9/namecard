@@ -78,8 +78,8 @@ void handleVCFOpen() {
     anchor.remove();
   } else if (Platform.isAndroid || Platform.isIOS) {
     // Untuk Android/iOS, download dan open terus
-    // openVCFFile();
-    launchUrl(Uri.parse("https://syam9.github.io/namecard/contact.vcf"));
+    openVCFFile();
+    // launchUrl(Uri.parse("https://syam9.github.io/namecard/contact.vcf"));
   }
 }
 //   Future<void> openVCFFile() async {
