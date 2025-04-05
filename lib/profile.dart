@@ -3,7 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
+import 'package:flutter/services.dart';
 import 'dart:io';
+import 'dart:io' show Platform;
 // import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:html' as html;
@@ -43,25 +45,61 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  Future<void> openVCFFile() async {
-  final url = "https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf";
+  Future<void> openVCFFile() async {  
+  final url = "https://syam9.github.io/namecard/contact.vcf";  // Gunakan URL GitHub Pages
+  
   final response = await http.get(Uri.parse(url));
-
-  final dir = await getTemporaryDirectory();
-  final file = File('${dir.path}/contact.vcf');
-  await file.writeAsBytes(response.bodyBytes);
-
-  final result = await OpenFile.open(file.path);
-  print("Open result: ${result.message}");
+  
+  if (response.statusCode == 200) {
+    // Simpan file dalam temporary directory
+    final dir = await getTemporaryDirectory();
+    final file = File('${dir.path}/contact.vcf');
+    
+    await file.writeAsBytes(response.bodyBytes); // Save VCF file
+    
+    // Open file secara automatik
+    final result = await OpenFile.open(file.path);
+    print("Open result: ${result.message}");
+  } else {
+    print("Failed to load VCF file. Status code: ${response.statusCode}");
+  }
 }
 
 void handleVCFOpen() {
+  final url = "https://syam9.github.io/namecard/contact.vcf";  // URL untuk VCF
+  
   if (kIsWeb) {
-    html.window.open("https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf", "_blank");
+    // Untuk web, buka dalam tab baru
+    final anchor = html.AnchorElement(href: url)
+      ..target = "_blank"
+      ..download = "contact.vcf";
+    html.document.body!.append(anchor);
+    anchor.click();
+    anchor.remove();
   } else if (Platform.isAndroid || Platform.isIOS) {
-    openVCFFile(); // the function from above
+    // Untuk Android/iOS, download dan open terus
+    openVCFFile();
   }
 }
+//   Future<void> openVCFFile() async {
+//   final url = "https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf";
+//   final response = await http.get(Uri.parse(url));
+//
+//   final dir = await getTemporaryDirectory();
+//   final file = File('${dir.path}/contact.vcf');
+//   await file.writeAsBytes(response.bodyBytes);
+//
+//   final result = await OpenFile.open(file.path);
+//   print("Open result: ${result.message}");
+// }
+//
+// void handleVCFOpen() {
+//   if (kIsWeb) {
+//     html.window.open("https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf", "_blank");
+//   } else if (Platform.isAndroid || Platform.isIOS) {
+//     openVCFFile(); // the function from above
+//   }
+// }
 
 
   
