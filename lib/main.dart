@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
+import 'dart:typed_data';
 import 'home.dart';
 import 'profile.dart';
 import 'dart:ui';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 Map<int, Color> colorCodes = {
   50: Color(0xFFE0F7FA),
@@ -19,13 +25,22 @@ Map<int, Color> colorCodes = {
 
 MaterialColor customSwatch = MaterialColor(0xFF00ABB7, colorCodes);
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // runApp(const MyApp());
+
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isFormSubmitted = prefs.getBool('form_submitted') ?? false;
+
+  runApp(MyApp(showForm: !isFormSubmitted));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key});
+  final bool showForm;
+  // const MyApp({super.key, required this.showForm});
+  const MyApp({Key? key, required this.showForm}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +58,18 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey, // Warna ikon tak dipilih
         ),
       ),
-      home: DashboardScreen(),
+      // home: DashboardScreen(),
+      // home: DashboardScreen(showForm: true), // atau false kalau user dah isi
+      home: DashboardScreen(showForm: showForm),
     );
   }
 }
 
 class DashboardScreen extends StatefulWidget {
+  final bool showForm;
+  // DashboardScreen({required this.showForm}); // <-- ADD THIS
+  const DashboardScreen({Key? key, required this.showForm}) : super(key: key);
+
   @override
   _DashboardScreenPageState createState() => _DashboardScreenPageState();
 }
@@ -66,6 +87,108 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.showForm) {
+      Future.delayed(Duration.zero, () {
+        _showBusinessFormDialog();
+      });
+    }
+  }
+
+  void _showBusinessFormDialog() {
+    String name = '';
+    String business = '';
+    String phone = '';
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Business Info"),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(labelText: "Name"),
+                  onChanged: (val) => name = val,
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: "Business Type"),
+                  onChanged: (val) => business = val,
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: "Phone Number"),
+                  keyboardType: TextInputType.phone,
+                  onChanged: (val) => phone = val,
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text("Cancel"),
+              onPressed: () {
+                Navigator.pop(context); // This will dismiss the dialog
+              },
+            ),
+            TextButton(
+              child: Text("Submit"),
+              onPressed: () async {
+                Navigator.pop(context);
+                await _submitToTelegram(name, business, phone);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _submitToTelegram(
+      String name, String business, String phone) async {
+    final vcfContent = """
+BEGIN:VCARD
+VERSION:3.0
+N:$name
+ORG:$business
+TEL;TYPE=CELL:$phone
+END:VCARD
+""";
+
+    final fileName = "${name}_$business.vcf".replaceAll(" ", "_");
+
+    // Convert ke bytes
+    final bytes = Uint8List.fromList(vcfContent.codeUnits);
+
+    // Telegram Bot Token & Chat ID
+    final token = "7854918162:AAEEEZquUyeD_kKc_dWko2wJ8wleMGZYxQA";
+    final chatId = "249352045";
+    final url = Uri.parse("https://api.telegram.org/bot$token/sendDocument");
+
+    var request = http.MultipartRequest('POST', url)
+      ..fields['chat_id'] = chatId
+      // ..fields['caption'] = "$name - $business"
+      ..fields['caption'] =
+      "$name - $business\n\n📞 WhatsApp: https://wa.me/${phone.replaceAll("+", "").replaceAll(" ", "")}"
+      ..files.add(
+          http.MultipartFile.fromBytes('document', bytes, filename: fileName));
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      print("✅ Berjaya hantar ke Telegram");
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('form_submitted', true);
+    } else {
+      print("❌ Gagal hantar: ${response.statusCode}");
+      final resBody = await response.stream.bytesToString();
+      print("Telegram error: $resBody");
+    }
   }
 
   @override
@@ -113,8 +236,8 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
                 backgroundColor: Colors.transparent, // Buat AppBar lutsinar
                 elevation: 0, // Hilangkan shadow
                 title: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 20),
                     Text(
@@ -141,32 +264,6 @@ class _DashboardScreenPageState extends State<DashboardScreen> {
             ],
           ),
         ),
-//           appBar: PreferredSize(
-//   preferredSize: Size.fromHeight(100), // Tinggikan AppBar
-//   child: Stack(
-//     fit: StackFit.expand,
-//     children: [
-//       Positioned.fill(
-//         child: Image.network(
-//           'https://images.pexels.com/photos/2102416/pexels-photo-2102416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-//           fit: BoxFit.cover, // Pastikan gambar penuh dalam ruang
-//         ),
-//       ),
-//       AppBar(
-//         backgroundColor: Colors.transparent, // Biar gambar jadi background
-//         elevation: 0, // Hilangkan shadow
-//         title: Text(
-//           "Your App Title",
-//           style: TextStyle(
-//             color: Colors.white, // Teks putih supaya jelas atas gambar
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//         centerTitle: true,
-//       ),
-//     ],
-//   ),
-// ),
 
         drawer: DrawerWidget(),
         body: _pages[_selectedIndex],
