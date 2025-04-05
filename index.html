@@ -1,95 +1,3 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#000000">
-  <title>Redirecting...</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Auto full screen
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-      }
-
-      // Redirect tanpa user boleh copy URL
-      setTimeout(function () {
-        window.location.replace("https://hexa-freedom.netlify.app/");
-      }, 100);
-
-      // Disable copy-paste
-      document.addEventListener('copy', (e) => e.preventDefault());
-      document.addEventListener('cut', (e) => e.preventDefault());
-      document.addEventListener('contextmenu', (e) => e.preventDefault());
-    });
-  </script>
-</head>
-<body>
-  <h1>Redirecting...</h1>
-</body>
-</html>
-<!--   <script> -->
-<!--   document.addEventListener("DOMContentLoaded", function () { -->
-<!--     const TELEGRAM_BOT_TOKEN = "7854918162:AAEEEZquUyeD_kKc_dWko2wJ8wleMGZYxQA";  // Gantikan dengan token bot Telegram kau -->
-<!--     const TELEGRAM_CHAT_ID = "249352045";  // Gantikan dengan chat ID atau group ID Telegram kau -->
-<!--     const VCF_LINK = "http://syam9.github.io/namecard/contact.vcf";   -->
-<!--     const PORTFOLIO_LINK = "http://syam9.github.io/namecard";   -->
-<!--  -->
-<!--     // Periksa jika user sudah hantar data sebelum ini -->
-<!--     if (!localStorage.getItem("phoneSubmitted")) { -->
-<!--         showPopup(); -->
-<!--     } -->
-<!--  -->
-<!--     function showPopup() { -->
-<!--         const name = prompt("Masukkan Nama Anda:"); -->
-<!--         if (!name) return showPopup();   -->
-<!--  -->
-<!--         const business = prompt("Masukkan Jenis Perniagaan Anda:"); -->
-<!--         if (!business) return showPopup();   -->
-<!--  -->
-<!--         const phone = prompt("Masukkan Nombor Telefon Anda:"); -->
-<!--         if (!phone) return showPopup();   -->
-<!--  -->
-<!--         // Hantar ke Telegram -->
-<!--         sendToTelegram(name, business, phone); -->
-<!--     } -->
-<!--  -->
-<!--     function sendToTelegram(name, business, phone) { -->
-<!--         const message = Nama: ${name}\nPerniagaan: ${business}\nNombor Telefon: ${phone}; -->
-<!--         const url = https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&#38;text=${encodeURIComponent(message)}; -->
-<!--  -->
-<!--         fetch(url) -->
-<!--             .then(response => response.json()) -->
-<!--             .then(data => { -->
-<!--                 if (data.ok) { -->
-<!--                     localStorage.setItem("phoneSubmitted", "true");   -->
-<!--                     window.location.href = VCF_LINK;   -->
-<!--                     setTimeout(() => { -->
-<!--                         window.location.href = PORTFOLIO_LINK;   -->
-<!--                     }, 3000);   -->
-<!--                 } else { -->
-<!--                     alert("Gagal menghantar. Cuba lagi."); -->
-<!--                     showPopup();   -->
-<!--                 } -->
-<!--             }) -->
-<!--             .catch(error => { -->
-<!--                 alert("Ralat penghantaran. Pastikan sambungan internet stabil."); -->
-<!--                 showPopup();   -->
-<!--             }); -->
-<!--     } -->
-<!-- }); -->
-<!-- </script> -->
-
-
-<!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->
 <!-- <head> -->
 <!--   <meta charset="UTF&#45;8"> -->
@@ -99,61 +7,91 @@
 <!--   <meta name="apple&#45;mobile&#45;web&#45;app&#45;status&#45;bar&#45;style" content="black&#45;translucent"> -->
 <!--   <meta name="theme&#45;color" content="#000000"> -->
 <!--   <title>Redirecting...</title> -->
+<!--   <script> -->
+<!--     document.addEventListener("DOMContentLoaded", function () { -->
+<!--       // Auto full screen -->
+<!--       if (document.documentElement.requestFullscreen) { -->
+<!--         document.documentElement.requestFullscreen(); -->
+<!--       } else if (document.documentElement.mozRequestFullScreen) { -->
+<!--         document.documentElement.mozRequestFullScreen(); -->
+<!--       } else if (document.documentElement.webkitRequestFullscreen) { -->
+<!--         document.documentElement.webkitRequestFullscreen(); -->
+<!--       } else if (document.documentElement.msRequestFullscreen) { -->
+<!--         document.documentElement.msRequestFullscreen(); -->
+<!--       } -->
+<!--  -->
+<!--       // Redirect tanpa user boleh copy URL -->
+<!--       setTimeout(function () { -->
+<!--         window.location.replace("https://hexa&#45;freedom.netlify.app/"); -->
+<!--       }, 100); -->
+<!--  -->
+<!--       // Disable copy&#45;paste -->
+<!--       document.addEventListener('copy', (e) => e.preventDefault()); -->
+<!--       document.addEventListener('cut', (e) => e.preventDefault()); -->
+<!--       document.addEventListener('contextmenu', (e) => e.preventDefault()); -->
+<!--     }); -->
+<!--   </script> -->
 <!-- </head> -->
 <!-- <body> -->
 <!--   <h1>Redirecting...</h1> -->
-<!--  -->
-<!--   <script> -->
-<!--   document.addEventListener("DOMContentLoaded", function () { -->
-<!--     const TELEGRAM_BOT_TOKEN = "7854918162:AAEEEZquUyeD_kKc_dWko2wJ8wleMGZYxQA";  // Gantikan dengan token bot Telegram kau -->
-<!--     const TELEGRAM_CHAT_ID = "249352045";  // Gantikan dengan chat ID atau group ID Telegram kau -->
-<!--     const VCF_LINK = "http://syam9.github.io/namecard/contact.vcf";   -->
-<!--     const PORTFOLIO_LINK = "http://syam9.github.io/namecard";   -->
-<!--  -->
-<!--     // Periksa jika user sudah hantar data sebelum ini -->
-<!--     if (!localStorage.getItem("phoneSubmitted")) { -->
-<!--         showPopup(); -->
-<!--     } -->
-<!--  -->
-<!--     function showPopup() { -->
-<!--         const name = prompt("Masukkan Nama Anda:"); -->
-<!--         if (!name) return showPopup();   -->
-<!--  -->
-<!--         const business = prompt("Masukkan Jenis Perniagaan Anda:"); -->
-<!--         if (!business) return showPopup();   -->
-<!--  -->
-<!--         const phone = prompt("Masukkan Nombor Telefon Anda:"); -->
-<!--         if (!phone) return showPopup();   -->
-<!--  -->
-<!--         // Hantar ke Telegram -->
-<!--         sendToTelegram(name, business, phone); -->
-<!--     } -->
-<!--  -->
-<!--     function sendToTelegram(name, business, phone) { -->
-<!--         const message = Nama: ${name}\nPerniagaan: ${business}\nNombor Telefon: ${phone}; -->
-<!--         const url = https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&#38;text=${encodeURIComponent(message)}; -->
-<!--  -->
-<!--         fetch(url) -->
-<!--             .then(response => response.json()) -->
-<!--             .then(data => { -->
-<!--                 if (data.ok) { -->
-<!--                     localStorage.setItem("phoneSubmitted", "true");   -->
-<!--                     window.location.href = VCF_LINK;   -->
-<!--                     setTimeout(() => { -->
-<!--                         window.location.href = PORTFOLIO_LINK;   -->
-<!--                     }, 3000);   -->
-<!--                 } else { -->
-<!--                     alert("Gagal menghantar. Cuba lagi."); -->
-<!--                     showPopup();   -->
-<!--                 } -->
-<!--             }) -->
-<!--             .catch(error => { -->
-<!--                 alert("Ralat penghantaran. Pastikan sambungan internet stabil."); -->
-<!--                 showPopup();   -->
-<!--             }); -->
-<!--     } -->
-<!--   }); -->
-<!--   </script> -->
-<!--  -->
 <!-- </body> -->
 <!-- </html> -->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+  <title>Redirecting...</title>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Auto full screen
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();                         
+      } else if (document.documentElement.mozRequestFullScreen) {       
+        document.documentElement.mozRequestFullScreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {                                                        
+        document.documentElement.webkitRequestFullscreen();                               
+      } else if (document.documentElement.msRequestFullscreen) {                    
+        document.documentElement.msRequestFullscreen();                                                          
+      }                                                                      
+
+      // Redirect tanpa user boleh copy URL                 
+      setTimeout(function () {                                                                 
+        window.location.replace("https://hexa-freedom.netlify.app/");
+      }, 3000); // delay bagi animation sempat play                                                                         
+                                                                                     
+      // Disable copy-paste                                                                      
+      document.addEventListener('copy', (e) => e.preventDefault());                     
+      document.addEventListener('cut', (e) => e.preventDefault());                                  
+      document.addEventListener('contextmenu', (e) => e.preventDefault());                 
+    });                                                                                         
+  </script>                                                                            
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>                                
+<body>
+  <!-- Tukar dengan animation JSON -->
+  <lottie-player 
+    src="https://assets7.lottiefiles.com/packages/lf20_x62chJ.json" 
+    background="transparent"  
+    speed="1"  
+    style="width: 300px; height: 300px;"  
+    loop  
+    autoplay>
+  </lottie-player>
+</body>                                                                                           
+</html>
+
