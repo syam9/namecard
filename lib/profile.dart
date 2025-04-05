@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
-// import 'dart:io';
-import 'dart:io' if (dart.library.html) 'dart:html' as html;
+import 'package:open_file/open_file.dart';
+import 'dart:io';
+// import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:html' as html;
+import 'package:http/http.dart' as http;
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -40,6 +42,29 @@ class _ProfilePageState extends State<ProfilePage> {
       print("Error: WhatsApp tidak dapat dibuka");
     }
   }
+
+  Future<void> openVCFFile() async {
+  final url = "https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf";
+  final response = await http.get(Uri.parse(url));
+
+  final dir = await getTemporaryDirectory();
+  final file = File('${dir.path}/contact.vcf');
+  await file.writeAsBytes(response.bodyBytes);
+
+  final result = await OpenFile.open(file.path);
+  print("Open result: ${result.message}");
+}
+
+void handleVCFOpen() {
+  if (kIsWeb) {
+    html.window.open("https://raw.githubusercontent.com/syam9/namecard/main/contact.vcf", "_blank");
+  } else if (Platform.isAndroid || Platform.isIOS) {
+    openVCFFile(); // the function from above
+  }
+}
+
+
+  
 
   void _showInputDialog() {
     showDialog(
@@ -289,9 +314,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   side: const BorderSide(color: Color(0xFF00abb7), width: 1),
                 ),
                 onPressed: () {
-                  openWhatsApp("+601118872966");
+                  // openWhatsApp("+601118872966");
+                  handleVCFOpen();
                 },
-                child: const Text("Chat on Whatsapp"),
+                // child: const Text("Chat on Whatsapp"),
+                child: const Text("Save Phone Number"),
               ),
             ),
           ],

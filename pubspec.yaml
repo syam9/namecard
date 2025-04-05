@@ -42,6 +42,7 @@ dependencies:
   share_plus: ^7.2.2
   shared_preferences: ^2.2.2
   http: ^1.1.0
+  open_file: ^3.3.2
   # timeline_tile: ^2.0.0
 
 dev_dependencies:
