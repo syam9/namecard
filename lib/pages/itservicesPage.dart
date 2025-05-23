@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import './graphicdesignPage.dart';
+import './uiuxDesignerPage.dart';
+import './appdevelopmentPage.dart';
+import './videographyPage.dart';
+import './programmingPage.dart';
 
 class ITServicesPage extends StatelessWidget {
-  final List<Map<String, String>> services = [
-    {"title": "UIUX Designer", "icon": "💻"},
-    {"title": "Graphic Design", "icon": "🎨"},
-    {"title": "App Development", "icon": "📱"},
-    {"title": "Videography", "icon": " 🎥r"},
-    {"title": "Programming", "icon": "👨‍💻"},
+  // final List<Map<String, String>> services = [
+  //   {"title": "UIUX Designer", "icon": "💻"},
+  //   {"title": "Graphic Design", "icon": "🎨"},
+  //   {"title": "App Development", "icon": "📱"},
+  //   {"title": "Videography", "icon": " 🎥r"},
+  //   {"title": "Programming", "icon": "👨‍💻"},
+  // ];
+
+  final List<Map<String, dynamic>> services = [
+    {"title": "UIUX Designer", "icon": "💻", "page": UiuxDesignerPage()},
+    {"title": "Graphic Design", "icon": "🎨", "page": GraphicDesignPage()},
+    {"title": "App Development", "icon": "📱", "page": AppDevelopmentPage()},
+    {"title": "Videography", "icon": "🎥", "page": VideographyPage()},
+    {"title": "Programming", "icon": "👨‍💻", "page": ProgrammingPage()},
   ];
 
   void _applyNow(BuildContext context) {
@@ -42,10 +55,15 @@ class ITServicesPage extends StatelessWidget {
                     elevation: 0,
                     child: InkWell(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text(
-                                  "${services[index]['title']} selected!")),
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   SnackBar(
+                        //       content: Text(
+                        //           "${services[index]['title']} selected!")),
+                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => services[index]["page"]),
                         );
                       },
                       child: Column(
@@ -68,23 +86,23 @@ class ITServicesPage extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () => _applyNow(context),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                  textStyle: TextStyle(fontSize: 18),
-                ),
-                child: Text("Apply Now"),
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.all(16.0),
+          //   child: Container(
+          //     width: MediaQuery.of(context).size.width,
+          //     child: ElevatedButton(
+          //       onPressed: () => _applyNow(context),
+          //       style: ElevatedButton.styleFrom(
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10),
+          //         ),
+          //         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+          //         textStyle: TextStyle(fontSize: 18),
+          //       ),
+          //       child: Text("Apply Now"),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

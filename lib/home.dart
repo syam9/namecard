@@ -85,10 +85,10 @@ class _ReelsPreviewPageState extends State<HomeTab> {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Text(
-                            "Event ${index + 1}",
-                            style: TextStyle(fontSize: isMobile ? 12 : 14),
-                          ),
+                          // Text(
+                          //   "Event ${index + 1}",
+                          //   style: TextStyle(fontSize: isMobile ? 12 : 14),
+                          // ),
                         ],
                       ),
                     ),

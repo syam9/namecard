@@ -262,8 +262,13 @@ file:///Users/mesyamuddin/Documents/Apps/namecard/.dart_tool/package_config.json
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/drawer.dart
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/home.dart
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/main.dart
+file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/appdevelopmentPage.dart
+file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/graphicdesignPage.dart
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/itservicesPage.dart
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/mescoffeePage.dart
+file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/programmingPage.dart
+file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/uiuxDesignerPage.dart
+file:///Users/mesyamuddin/Documents/Apps/namecard/lib/pages/videographyPage.dart
 file:///Users/mesyamuddin/Documents/Apps/namecard/lib/profile.dart
 file:///Users/mesyamuddin/development/flutter/bin/cache/flutter_web_sdk/kernel/dart2js_platform.dill
 file:///Users/mesyamuddin/development/flutter/packages/flutter/lib/animation.dart
