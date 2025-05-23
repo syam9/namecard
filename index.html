@@ -40,6 +40,19 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+        font-family: 'Arial', sans-serif;
+  }
+      .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loading-text {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    color: white;
+    letter-spacing: 1px;
   }
   </style>
 </head>                                
@@ -53,14 +66,17 @@
   <!--   loop   -->
   <!--   autoplay> -->
   <!-- </lottie&#45;player> -->
+  <div class="loading-container">
   <lottie-player 
   src="https://assets10.lottiefiles.com/packages/lf20_kxsd2ytq.json" 
   background="transparent"  
   speed="1"  
-  style="width: 300px; height: 300px;"  
+  style="width: 180px; height: 180px;"
   loop  
   autoplay>
  </lottie-player>
+ <p class="loading-text">Loading...</p>
+  </div>
 
 </body>                                                                                           
 </html>
